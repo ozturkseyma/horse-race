@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORSE RACE</title>
+    <style>
+        .platform {
+            width: 100%;
+            background-color: #529968;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+        }
+
+        .platform img {
+            width: 250px;
+            height: 250px;
+        }
+
+        .button-wrapper {
+            width: 100%;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-wrapper button {
+            background-color: #004A87;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            border-color: #66B0ED;
+            font-size: 16px;
+            cursor: pointer;
+
+        }
+
+        .platform-finish {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(186, 62, 62);
+        }
+
+        .platform-finish .finish-line {
+            transform: rotate(-90deg);
+            color: white;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-wrapper">
+        <button>
+            START
+        </button>
+    </div>
+    <div class="platform-finish">
+        <div class="platform">
+            <img src="horse.gif" alt="" id="horse1">
+            <img src="horse.gif" alt="" id="horse2">
+            <img src="horse.gif" alt="" id="horse3">
+            <img src="horse.gif" alt="" id="horse4">
+        </div>
+        <div class="finish-line" id="finish-line">
+            FINISH
+        </div>
+    </div>
+
+    <script>
+        var finishLine = document.getElementById('finish-line')
+        var horse1 = document.getElementById('horse1')
+        var horse2 = document.getElementById('horse2')
+        var horse3 = document.getElementById('horse3')
+        var horse4 = document.getElementById('horse4')
+        var button = document.querySelector('button')
+        var horse1Location = 0
+        var horse2Location = 0
+        var horse3Location = 0
+        var horse4Location = 0
+
+
+        var timerId = null
+
+        function createRandom() {
+            return Math.random() * 200
+        }
+
+        function handleMove() {
+            horse1Location = horse1Location + createRandom()
+            horse2Location = horse2Location + createRandom()
+            horse3Location = horse3Location + createRandom()
+            horse4Location = horse4Location + createRandom()
+
+            horse1.style.marginLeft = horse1Location + "px"
+            horse2.style.marginLeft = horse2Location + "px"
+            horse3.style.marginLeft = horse3Location + "px"
+            horse4.style.marginLeft = horse4Location + "px"
+
+            console.log(finishLine.offsetLeft)
+
+
+        }
+
+        function start() {
+            horse1Location = 0
+            horse2Location = 0
+            horse3Location = 0
+            horse4Location = 0
+            horse1.style.marginLeft = 0
+            horse2.style.marginLeft = 0
+            horse3.style.marginLeft = 0
+            horse4.style.marginLeft = 0
+
+
+
+            setInterval(handleMove, 500);
+
+        }
+
+        button.addEventListener('click', start)
+
+
+    </script>
+</body>
+
+</html>
